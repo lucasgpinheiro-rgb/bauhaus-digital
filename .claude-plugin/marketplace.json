@@ -1,0 +1,17 @@
+{
+  "name": "bauhaus-digital",
+  "owner": {
+    "name": "Lucas Gonçalves Pinheiro",
+    "url": "https://github.com/lucasgpinheiro-rgb"
+  },
+  "metadata": {
+    "description": "Marketplace for the bauhaus-digital skill: Itten, Müller-Brockmann and Albers applied to digital products."
+  },
+  "plugins": [
+    {
+      "name": "bauhaus-digital",
+      "source": "./",
+      "description": "Controlled contrast for digital products: contrast declaration, form character, grid units, tonal scale and color by interaction."
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "bauhaus-digital",
+  "displayName": "Bauhaus Digital",
+  "version": "1.0.0",
+  "description": "Designs and reviews interfaces, dashboards, design systems and slides with the Bauhaus Basic Course (Itten), Swiss grid systems (Müller-Brockmann) and Albers' Interaction of Color: a method of controlled contrast, tonal hierarchy and grid units, with every rule cited to the page and every heuristic labeled.",
+  "author": {
+    "name": "Lucas Gonçalves Pinheiro",
+    "url": "https://github.com/lucasgpinheiro-rgb"
+  },
+  "homepage": "https://github.com/lucasgpinheiro-rgb/bauhaus-digital",
+  "repository": "https://github.com/lucasgpinheiro-rgb/bauhaus-digital",
+  "documentationUrl": "https://github.com/lucasgpinheiro-rgb/bauhaus-digital#readme",
+  "supportUrl": "https://github.com/lucasgpinheiro-rgb/bauhaus-digital/issues",
+  "privacyPolicyUrl": "https://github.com/lucasgpinheiro-rgb/bauhaus-digital/blob/main/PRIVACY.md",
+  "license": "MIT",
+  "keywords": ["design", "bauhaus", "grid", "color", "typography", "design-system", "ui", "dashboard"]
+}
