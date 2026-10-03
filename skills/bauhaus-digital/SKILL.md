@@ -91,7 +91,7 @@ With a square base, that means:
 - square avatars;
 - bar loaders, not spinners.
 
-Define a **base character plus one accent character**, and reserve the accent for a single meaning. For example: base square, with the circle reserved for people and identity. Mixing characters without a hierarchy is the most common failure.
+Define a **base character plus one accent character**, and reserve the accent for a single meaning. For example: base square, with the circle reserved for people and identity. The roles above are a menu, not a set to use all at once. Pick one accent; the third character is absent, and its job is done by other means (a status dot becomes a small square, a trend arrow becomes a bar). Mixing characters without a hierarchy is the most common failure.
 
 **To build families** (icons, illustrations, component variants), use Itten's motif-and-variation exercises (p.62, 80, 82):
 
@@ -158,7 +158,7 @@ Type rules (measure, hierarchy, leading, reversed text) and the full consistency
 
 - **Hierarchy.** Size steps must be clearly recognizable. Weight works as a gray value. Never pair two faces of the same style, such as two similar grotesques (M-B p.45–47). In dense UI, mark headings with space or weight before size (*heuristic*).
 - **Measure.** Müller-Brockmann gives about 7 words per line (p.30, 53, 64), and elsewhere about 10 (p.31). Lines that are too long tire the eye, which has to hold the horizontal. Lines that are too short tire it too, by forcing constant line changes. Both reduce memorability (p.30–31). On screens, count characters instead: **45–75** (*heuristic*, after Bringhurst, not M-B).
-- **Size follows reading distance and measure.** He sizes type for a 30–35 cm reading distance (p.30), which is about where a phone is held. Desktop sits further away, so use larger type (*heuristic*). Kiosks, TV dashboards and projected slides need a stated viewing distance before you choose sizes. Wider columns need larger type to keep the same rhythm (p.31–32, 53–54), so use `clamp()` or container query units.
+- **Size follows reading distance and measure.** He sizes type for a 30–35 cm reading distance (p.30), which is about where a phone is held. Desktop sits further away, so use larger type (*heuristic*). Kiosks, TV dashboards and projected slides need a stated viewing distance before you choose sizes. To convert, keep the visual angle of a comfortable desktop body size (*heuristic*): 16 px at about 60 cm is about 4 mm, so the physical text height ≈ 0.007 × viewing distance, and px = that height ÷ the display's pixel pitch. For example, at 3.5 m on a 55" 1080p TV (pitch ≈ 0.63 mm), body ≈ 24.5 mm ≈ 40 px. Short labels can go to about two-thirds of that, never below. Check on the real wall. Wider columns need larger type to keep the same rhythm (p.31–32, 53–54), so use `clamp()` or container query units.
 - **Reversed text.** Light-on-dark text should be short and generously leaded (p.129). In dark mode, add a little line height and avoid long reversed passages.
 - **Albers' dissent** (ch. II): all-caps is the hardest reading, and a simpler letterform does not mean simpler reading. Do not set body text in geometric all-caps because it "looks Bauhaus".
 
@@ -181,7 +181,8 @@ Type rules (measure, hierarchy, leading, reversed text) and the full consistency
   - Itten's reversal: in a light scheme the darks stand out, and in a dark scheme the lights (p.16, 26).
   - Albers: a set of colors keeps its character in a higher or lower key if its intervals are kept, and the extremes leave no headroom (ch. XIV).
   - Keep the ΔL intervals between surface, raised surface, border, text and accent.
-  - Don't anchor the light theme at pure #FFF/#000 if it must transpose.
+  - Design the primary theme first, whichever it is (an operations wall or a night-shift tool is dark-first), then transpose to the other.
+  - Don't anchor either theme at pure #FFF/#000 if it must transpose.
   - Test by inlaying a dark-theme component into the light theme, and the reverse, then compare edge strengths.
 
 ### 6. Color
@@ -207,6 +208,8 @@ He also distrusts "tuned", failure-proof color sets (ch. III). So do not derive 
    - A chip or divider that straddles two surfaces will look like two different tokens (ch. VI, XV).
 2. **Quantity is area *and* recurrence.** Any color can work with any other if the quantities are right, and Albers says there are no comprehensive rules for finding them (ch. XVI).
    - *Heuristic:* start from about 95% neutral, 4% support and 1% action; the action color stays under about 5% of the area.
+   - The budget is for the **main accent**, whatever it is. On a product with actions, that is the action color. On a read-only display (a monitoring wall, a report), the main accent is the alert or the deviation, and the action budget does not apply. A critical alert may then fill a whole tile, because it is the one break. Cap the number of filled alerts and summarize beyond the cap ("+N"), because an accent repeated everywhere stops being one.
+   - Normal states carry no hue. If healthy is green everywhere, the screen is never quiet and the break can't be read.
    - Count occurrences as well as area. An accent covering 1% of the area, repeated on 30 badges, dominates.
    - The same hues in different proportions make a different product, so a palette spec includes role proportions.
 3. **Bezold effect / optical mixture** (ch. XII–XIII). Fine, evenly distributed elements merge toward each other. In a student plate he reproduces, swapping white mortar for black changes every brick.
@@ -279,6 +282,7 @@ For products:
 - **Spatial rhythm is mostly mechanical:** the unit, the grid, lists.
 - **Breaks are costly.** Allow them only where they carry meaning, at the main accent, and keep them few (*heuristic*: at most one structural break per screen).
 - **State changes need intermediate forms:** transitions, skeletons, morphs. An abrupt jump reads as broken rhythm.
+- **No perpetual motion for alerts.** A looping blink is the irregular interruption Itten's students found almost painful (p.98), repeated forever. Transition into the new state once, then hold still, and show elapsed time as text. Never flash more than three times a second (WCAG 2.3.1, *not in the sources*).
 
 **Texture is secondary to form** (Itten p.39). Grain, blur, glass and noise are at most a subordinate contrast and never carry hierarchy.
 
@@ -296,9 +300,10 @@ Müller-Brockmann's corporate-identity list (M-B p.134) works almost unchanged a
 
 ## Deliverable format
 
-When producing a design, lead with a spec block, then the design, then the checklist results:
+When producing a design, lead with a spec block, then the design, then the checklist results. If the content inventory or the viewing distance is unknown, say what you assumed in an `Assumptions` line rather than skipping step 0. If nothing has been rendered yet, list the visual checks (gray reduction, ramp strip, theme inlay) as pending, not as passed:
 
 ```
+Assumptions:    <content inventory, viewing distance, devices — if not given>
 Brief:          <the experience to produce>
 Contrast:       dominant <pair>; subordinate <pair>, <pair>
 Accent mode:    stillness | scanning (main accent: <element>)
@@ -306,7 +311,7 @@ Form character: base <square|circle|triangle>; accent <…> reserved for <meanin
 Grid:           <n> columns, gutter <x>, base unit <u>; row-gap <…>; max width <…>
 Type:           <faces>; scale <steps> at ratio <r>; line heights in <u>; measure <45–75 ch>
 Tone:           <n>-step ramp, equal ΔL (OKLCH); dark mode = transposed intervals
-Color:          action <token> ≤<x>% area and ≤<n> occurrences; status = ΔL + hue + icon
+Color:          main accent <action or alert token> ≤<x>% area and ≤<n> occurrences; normal states without hue; status = ΔL + hue + form/icon
 ```
 
 ## Review checklist
@@ -322,7 +327,7 @@ Structure
 Tone and color
 - [ ] Does the hierarchy survive the gray-reduction check (perceptual L, not HSL)?
 - [ ] Is the ramp equal in ΔL, with equally distinct boundaries in a contiguous strip?
-- [ ] Does the action color stay small in **area and count** (≲5% area)?
+- [ ] Does the main-accent color (action, or alert on read-only displays) stay scarce in **area and count**?
 - [ ] Does any adjacent pair differ in hue but not in lightness (vibration or vanishing)?
 - [ ] Is every state distinguishable without hue?
 - [ ] Have tokens been checked on every surface they land on (the surface × foreground matrix)?
@@ -347,6 +352,7 @@ Say so to the user when a request falls outside it, rather than forcing the sour
 - **Interaction design, information architecture and usability research.** These books are about perception and composition.
 - **Type design and type selection.** Müller-Brockmann covers setting and hierarchy (pp.17–47). For the typographic Bauhaus, look to Herbert Bayer and Joost Schmidt, and to Tschichold's *Die neue Typographie*, which Müller-Brockmann cites (p.7).
 - **Industrial functionalism.** Itten left the Bauhaus in 1923 after a conflict with Gropius. He did not believe the "Art and Technology" slogan could solve the problems of the time (Itten p.9, 13). If the user wants functionalism, meaning the later, industry-facing Bauhaus (general history, not these books), these sources are the wrong anchor.
+- **Operational display concerns.** Alert fatigue, escalation design, and OLED burn-in from static layouts on wall displays are not covered by these sources. Handle them explicitly when relevant.
 - **Paper-specific technique.** Paper versus screen is covered in `references/color.md` and `references/grid-and-type.md`.
 
 Itten's course is legitimate ground for product design. He taught it from 1917 to 1960, from Vienna to Zurich (p.15), and he judged its texture studies of value to future architects, industrial designers and commercial artists, and gave texture exercises even to textile merchants and managers (p.34). But it is a course in perception, not a product process. The workflow above is this skill's conversion of it.

@@ -43,6 +43,8 @@ Before its 1.0.0 release, this text was audited against all three books, with ev
   - OKLCH;
   - 95/4/1 color quantities (neutral/support/action), with the action color under ~5% of the area;
   - "at most one structural break per screen".
+  - the viewing-distance conversion (text height ≈ 0.007 × distance);
+  - the alert cap ("+N") and "normal states carry no hue".
 - **Mappings:** the product meanings given to square, triangle and circle, and the digital column of the contrast table.
 - **Accessibility rules:** WCAG, color-blindness, and dim screens.
 - **Product translations:** every **Rules** bullet in `color.md`, the accent modes mapped to screen types, the disc-and-path sizing, token pairs and the surface × foreground matrix, the dark-mode inset test, intermediate forms as motion design, and the three-directions exercise as a design process.
